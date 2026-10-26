@@ -1,113 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:ujicobapp/book.dart';
-import 'package:ujicobapp/detail_page.dart';
+import 'package:mobileluqman/news/news_page.dart';
+import 'package:mobileluqman/book/book_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedMenu = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Komikers")),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
+      appBar: AppBar(title: const Text("Luqmann.")),
+      body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Expanded(
                     child: Text(
-                      "Daftar Komik Kesukaan Kalian Ada Disini",
+                      "Semua Yang Kamu Suka Hanya Ada Di Sini",
                       style: TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-
                   const SizedBox(width: 12),
-                  Image.asset("images/banner.png", width: 120),
+                  Image.asset("images/banner.webp", width: 120),
                 ],
               ),
+              const SizedBox(height: 15),
 
-              //SubTitle
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text(
-                  "Daftar Manhwa",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-              ),
-
-              //ListBook
-              ListView.builder(
-                itemCount: listBook.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final book = listBook[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailPage(
-                            book: book,
-                          ),
+              Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            _selectedMenu = 0;
+                          });
+                        },
+                        icon: const Icon(Icons.article),
+                        label: const Text("News"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _selectedMenu == 0
+                              ? Colors.blue
+                              : Colors.grey,
+                          foregroundColor: _selectedMenu == 0
+                              ? Colors.white
+                              : Colors.black,
+                          elevation: _selectedMenu == 0 ? 2 : 0,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
-                      );
-                    },
-
-                    child: Container(
-                      width: double.infinity,
-                      height: 100,
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(bottom: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 5.0,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-
-                      child: Row(
-                        children: [
-                          Image.asset(book.image, width: 60),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                book.name,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                book.categoryBook,
-                                style: const TextStyle (fontSize: 13),
-                              ),
-                            ],
-                          ),
-                        ],
                       ),
                     ),
-                  );
-                },
-              ),
+                    const SizedBox(width: 15),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            _selectedMenu = 1;
+                          });
+                        },
+                        icon: const Icon(Icons.book),
+                        label: const Text("Komik"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _selectedMenu == 1
+                              ? Colors.blue
+                              : Colors.grey,
+                          foregroundColor: _selectedMenu == 1
+                              ? Colors.white
+                              : Colors.black,
+                          elevation: _selectedMenu == 1 ? 2 : 0,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
+
+                Expanded(
+                  child: _selectedMenu == 0 ? const NewsPage() : const BookPage(),
+                )
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

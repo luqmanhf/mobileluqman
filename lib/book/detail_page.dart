@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ujicobapp/book.dart';
+import 'package:mobileluqman/book/book.dart';
 import 'dart:ui';
 
 class DetailPage extends StatelessWidget {
@@ -59,10 +59,10 @@ class DetailPage extends StatelessWidget {
 
           //Deskripsi
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10.0),
             child: Text(
               "Description",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 2),
             ),
           ),
           Padding (

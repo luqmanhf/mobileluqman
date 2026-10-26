@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ujicobapp/home_page.dart';
+import 'package:mobileluqman/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,8 +10,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'JetBrainsMono',
+      ),
+      home: const HomePage(),
     );
   }
 }
