@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobileluqman/news/news_page.dart';
 import 'package:mobileluqman/book/book_page.dart';
+import 'package:mobileluqman/noteapp/pages/note_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,84 +18,102 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text("Luqmann.")),
       body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: Text(
-                      "Semua Yang Kamu Suka Hanya Ada Di Sini",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Expanded(
+                  child: Text(
+                    "Semua Yang Kamu Suka Hanya Ada Di Sini",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Image.asset("images/banner.webp", width: 120),
-                ],
-              ),
-              const SizedBox(height: 15),
-
-              Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          setState(() {
-                            _selectedMenu = 0;
-                          });
-                        },
-                        icon: const Icon(Icons.article),
-                        label: const Text("News"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _selectedMenu == 0
-                              ? Colors.blue
-                              : Colors.grey,
-                          foregroundColor: _selectedMenu == 0
-                              ? Colors.white
-                              : Colors.black,
-                          elevation: _selectedMenu == 0 ? 2 : 0,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          setState(() {
-                            _selectedMenu = 1;
-                          });
-                        },
-                        icon: const Icon(Icons.book),
-                        label: const Text("Komik"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _selectedMenu == 1
-                              ? Colors.blue
-                              : Colors.grey,
-                          foregroundColor: _selectedMenu == 1
-                              ? Colors.white
-                              : Colors.black,
-                          elevation: _selectedMenu == 1 ? 2 : 0,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
-                const SizedBox(height: 15),
-
+                const SizedBox(width: 12),
+                Image.asset("images/banner.webp", width: 120),
+              ],
+            ),
+            const SizedBox(height: 15),
+            Row(
+              children: [
                 Expanded(
-                  child: _selectedMenu == 0 ? const NewsPage() : const BookPage(),
-                )
-            ],
-          ),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMenu = 0;
+                      });
+                    },
+                    icon: const Icon(Icons.article),
+                    label: const Text("News"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          _selectedMenu == 0 ? Colors.blue : Colors.grey,
+                      foregroundColor:
+                          _selectedMenu == 0 ? Colors.white : Colors.black,
+                      elevation: _selectedMenu == 0 ? 2 : 0,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMenu = 1;
+                      });
+                    },
+                    icon: const Icon(Icons.book),
+                    label: const Text("Komik"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          _selectedMenu == 1 ? Colors.blue : Colors.grey,
+                      foregroundColor:
+                          _selectedMenu == 1 ? Colors.white : Colors.black,
+                      elevation: _selectedMenu == 1 ? 2 : 0,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMenu = 2;
+                      });
+                    },
+                    icon: const Icon(Icons.note),
+                    label: const Text("Catatan"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          _selectedMenu == 2 ? Colors.blue : Colors.grey,
+                      foregroundColor:
+                          _selectedMenu == 2 ? Colors.white : Colors.black,
+                      elevation: _selectedMenu == 2 ? 2 : 0,
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 15), //Switch expression
+            Expanded(
+              child: switch (_selectedMenu) {
+                0 => const NewsPage(),
+                1 => const BookPage(),
+                2 => const NotePage(),
+                _ => const SizedBox.shrink(),
+              },
+            )
+          ],
         ),
-      );
+      ),
+    );
   }
 }
