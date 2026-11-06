@@ -1,5 +1,3 @@
-# 📱 Mobile Luqmann (mobileluqman)
-
 Aplikasi mobile berbasis **Flutter** multi-fitur yang mengintegrasikan informasi berita daring (*News*), katalog komik (*Manhwa*), serta manajemen catatan harian (*Note App*) dengan persistensi basis data lokal **SQLite**.
 
 ---
