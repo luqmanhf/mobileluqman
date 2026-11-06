@@ -28,7 +28,7 @@ Aplikasi memiliki antarmuka utama yang mudah diakses melalui tab navigasi di das
    - Halaman detail berita interaktif untuk membaca artikel secara lengkap.
 
 2. **📚 Komik (Book / Manhwa Page)**
-   - Katalog manhwa/komik dengan daftar judul populer (Solo Leveling, Lookism, Tower of God, dsb.).
+   - Katalog manhwa/komik dengan daftar judul populer.
    - Menampilkan rating, kategori/genre, harga koin, serta gambar sampul lokal.
    - Halaman detail komik lengkap dengan banner dan ringkasan sinopsis cerita.
 
